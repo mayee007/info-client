@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+ 
+    <title>Information Website</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h2>Information website</h2>
+
+    <table border=1>
+	  <tr>
+	  <th>Technology ID</th>
+	  <th>Technology</th>
+	  <th>Category</th>
+	  <tr th:each="tech : ${techs}">
+        <td th:text="${tech.technologyId}">1</td>
+        <td th:text="${tech.category}">1</td>
+        <td th:text="${tech.technologyType}">1</td>
+      </tr>
+      
+	</table>
+    
+</body>
+</html>
