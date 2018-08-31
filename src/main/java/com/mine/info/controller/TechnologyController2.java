@@ -39,6 +39,7 @@ public class TechnologyController2 {
 		return "alltech";
 	}
 
+	@RequestMapping("{id}")
 	String listTechnologyById(@RequestParam("id") String technologyId, Model map) {
 		logger.info("inside TechnologyController2::listTechnologyById()");
 		logger.info("id = " + technologyId);
