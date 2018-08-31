@@ -27,26 +27,29 @@ public class TechnologyController2 {
 	RestTemplate restTemplate = new RestTemplate(); 
 	
 	String listAllTechnology(Map<String, Object> model) {
+		logger.info("inside TechnologyController2::listAllTechnology()");
 		RestTemplate restTemplate = new RestTemplate(); 
 		Technology[] techs = restTemplate.getForObject(url, Technology[].class); 
 		
+		logger.info(techs.toString());
 		for (Technology tech: techs) { 
-			System.out.println(tech.getTechnologyType() + " " + tech.getCategory());
+			logger.info(tech.getTechnologyType() + " " + tech.getCategory());
 		}
 		model.put("techs", techs); 
 		return "alltech";
 	}
 
 	String listTechnologyById(@RequestParam("id") String technologyId, Model map) {
-		
-		url = url+"/{id}"; 
+		logger.info("inside TechnologyController2::listTechnologyById()");
+		logger.info("id = " + technologyId);
+		url = url+"/{technologyId}"; 
 		Map<String, String> params = new HashMap<String, String>();
 	    params.put("id", technologyId);
 	    
 		RestTemplate restTemplate = new RestTemplate(); 
 		Technology tech = restTemplate.getForObject(url, Technology.class, params); 
 		
-		System.out.println(tech.getTechnologyType() + " " + tech.getCategory());
+		logger.info(tech.getTechnologyType() + " " + tech.getCategory());
 		
 		map.addAttribute("tech", tech); 
 		return "tech" ;

@@ -26,11 +26,13 @@ public class TechnologyController {
 	
 	@RequestMapping("/listAllTechnology")
 	String listAllTechnology(Map<String, Object> model) {
+		logger.info("inside TechnologyController2::listAllTechnology()");
 		RestTemplate restTemplate = new RestTemplate(); 
 		Technology[] techs = restTemplate.getForObject(url, Technology[].class); 
 		
+		logger.info(techs.toString());
 		for (Technology tech: techs) { 
-			System.out.println(tech.getTechnologyType() + " " + tech.getCategory());
+			logger.info(tech.getTechnologyType() + " " + tech.getCategory());
 		}
 		model.put("techs", techs); 
 		return "alltech";
