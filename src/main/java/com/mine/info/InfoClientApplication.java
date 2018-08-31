@@ -14,7 +14,7 @@ public class InfoClientApplication {
 		
 		RestTemplate restTemplate = new RestTemplate();
 		  Technology tech = restTemplate
-		    .getForObject("http://localhost:8082/info/technology/{id}", Technology.class,2);
+		    .getForObject("http://info-app-api:8080/info/technology/{id}", Technology.class,2);
 		  System.out.println("tech"+tech.getCategory());
 		  System.out.println("tech"+tech.getTechnologyType());
 		  
