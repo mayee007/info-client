@@ -18,6 +18,7 @@ pipeline {
         stage('Preparation') {
             
             steps {
+	       // github repository 
                git 'https://github.com/mayee007/info-client.git'
             }
         }
@@ -34,7 +35,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                sh "/root/workspace/info-client.sh ${params.destination} ${params.artifactRepositoryUrl} ${params.mavenGroupId} ${params.mavenArtifactId} ${params.version} ${params.packaging} ${params.artifactName}"
             }
         }
     }
