@@ -27,7 +27,7 @@ public class TechnologyController {
 	@RequestMapping("/listAllTechnology")
 	String listAllTechnology(Map<String, Object> model) {
 		logger.info("inside TechnologyController2::listAllTechnology()");
-		RestTemplate restTemplate = new RestTemplate(); 
+		//RestTemplate restTemplate = new RestTemplate(); 
 		Technology[] techs = restTemplate.getForObject(url, Technology[].class); 
 		
 		logger.info(techs.toString());
@@ -45,7 +45,7 @@ public class TechnologyController {
 		Map<String, String> params = new HashMap<String, String>();
 	    params.put("id", Long.toString(id));
 	    
-		RestTemplate restTemplate = new RestTemplate(); 
+		//RestTemplate restTemplate = new RestTemplate(); 
 		Technology tech = restTemplate.getForObject(url, Technology.class, params); 
 		
 		System.out.println(tech.getTechnologyType() + " " + tech.getCategory());
