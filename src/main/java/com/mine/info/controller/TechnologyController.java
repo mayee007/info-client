@@ -42,12 +42,12 @@ public class TechnologyController {
 	@RequestMapping("/listAllTechnology/{id}")
 	String listTechnologyById(Map<String, Object> model, @PathVariable("id") long id) {
 		
-		url = url+"/{id}"; 
+		String uri = url+"/{id}"; 
 		Map<String, String> params = new HashMap<String, String>();
 	    params.put("id", Long.toString(id));
 	    
 		//RestTemplate restTemplate = new RestTemplate(); 
-		Technology tech = restTemplate.getForObject(url, Technology.class, params); 
+		Technology tech = restTemplate.getForObject(uri, Technology.class, params); 
 		
 		System.out.println(tech.getTechnologyType() + " " + tech.getCategory());
 		
