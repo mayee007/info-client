@@ -1,0 +1,45 @@
+<html>
+<head>
+<title> Add Problem</title> 
+  <script type='text/javascript' src='/Info/dwr/engine.js'></script>
+  <script type='text/javascript' src='/Info/dwr/util.js'></script>
+  <script type='text/javascript' src='/Info/dwr/interface/TechnologyDWRUtil.js'></script> 
+  <script type='text/javascript' src='/Info/javascript/TechnologyUtil.js'></script> 
+</head>  
+<body>
+<h2>Add new Problem</h2>
+<form method="POST" action="../addProblem.htm">
+	
+	<table border="1">
+	<tr>
+		<td> <b>Technology Type </b></td>  
+		<td><select id="techType" name="techType" onChange="updateCategory();"/>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td> <b>Category</b></td>  
+		<td><select id="category" name="category"/> 
+			</select>		
+		</td>
+	</tr>
+	<tr>
+		<td><b> Problem </b></td>
+		<td> <textarea rows="10" cols="80" name="problem"></textarea> </td>
+	</tr>
+	<tr>
+		<td> <b>Reason for Problem </b></td>
+		<td> <textarea rows="10" cols="80" name="reason"></textarea></td>
+	</tr>
+	<tr>
+		<td> <b>Solution </b></td>
+		<td> <textarea rows="10" cols="80" name="solution"></textarea></td>
+	</tr>
+	<tr><td></td>
+		<td> <b><input type="submit" value="submit"/> </b></td>
+	</tr>
+	
+</table>
+</form>	
+</body>
+</html>

@@ -1,0 +1,41 @@
+<html>
+<head>
+<title> Add Information</title>
+  <script type='text/javascript' src='/Info/dwr/engine.js'></script>
+  <script type='text/javascript' src='/Info/dwr/util.js'></script>
+  <script type='text/javascript' src='/Info/dwr/interface/TechnologyDWRUtil.js'></script> 
+  <script type='text/javascript' src='/Info/javascript/TechnologyUtil.js'></script> 
+</head>  
+<body>
+<h2>Add new Information</h2>
+<form method="POST" action="../addInfo.htm">
+	
+	<table border="1">
+	<tr>
+		<td> <b>Technology Type </b></td>  
+		<td><select id="techType" name="techType" onChange="updateCategory();"/>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td> <b>Category</b></td>  
+		<td><select id="category" name="category"/> 
+			</select>		
+		</td>
+	</tr>
+	<tr>
+		<td><b> Subject </b></td>
+		<td> <textarea rows="10" cols="80" name="subject"></textarea> </td>
+	</tr>
+	<tr>
+		<td> <b>Description </b></td>
+		<td> <textarea rows="10" cols="80" name="description"></textarea></td>
+	</tr>
+	<tr><td></td>
+		<td> <b><input type="submit" value="submit"/> </b></td>
+	</tr>
+	
+</table>
+</form>	
+</body>
+</html>
