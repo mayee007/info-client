@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <h2> Details for Technology ID: "${tech.technologyId}"/> </h2> 
+	<table border=1>
+	 
+      <tr><td>Technology ID</td> <td th:text="${tech.technologyId}">1</td> </tr>
+      <tr><td>Technology Type</td> <td th:text="${tech.category}">1</td> </tr> 
+      <tr><td>Category</td>  <td th:text="${tech.technologyType}">1</td> </tr> 
+      
+    </table>
+ </body>
+</html>
