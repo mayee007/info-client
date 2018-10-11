@@ -1,0 +1,26 @@
+<!doctype html>
+<html ng-app="info">
+	<head>
+		<title>Technology List</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    	<script src="technologyList.js"></script>
+	</head>
+
+	<body>
+		
+		<div ng-controller="techList">
+			<table>
+    			<tr>
+        			<th>Technology ID</th>
+        			<th>Technology Type</th>
+        			<th>Category</th>
+    			</tr>
+    			<tr ng-repeat="tech in techs">
+        			<td>{{tech.technologyId}}</td>
+        			<td>{{tech.technologyType}}</td>
+        			<td>{{tech.category}}</td>
+    			</tr>
+			</table>
+		</div>
+	</body>
+</html>
