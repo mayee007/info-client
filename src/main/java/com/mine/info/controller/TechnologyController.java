@@ -40,6 +40,20 @@ public class TechnologyController {
 	@Autowired
 	RestTemplate restTemplate; 
 	
+	@GetMapping("/addTechnology")
+	String addTechnology(Map<String, Object> model) {
+		logger.info("inside add tech");
+		
+		Technology[] techs = restTemplate.getForObject(url, Technology[].class); 
+		
+		logger.info(techs.toString());
+		for (Technology tech: techs) { 
+			logger.info(tech.getTechnologyType() + " " + tech.getCategory());
+		}
+		model.put("techs", techs); 
+		return "addTechnology.jsp";
+	}
+	
 	@GetMapping("/listAllTechnology")
 	String listAllTechnology(Map<String, Object> model) {
 		logger.info("inside TechnologyController::listAllTechnology()");

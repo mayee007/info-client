@@ -1,0 +1,5 @@
+# create package without tests 
+mvn clean package -Dmaven.test.skip=true
+
+# to start server 
+java -jar -Dspring.profiles.active=dev target/info-client-0.0.1-SNAPSHOT.war
