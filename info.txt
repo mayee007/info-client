@@ -1,5 +1,21 @@
+#
+# This is the client program to access info service 
+# No direct database connection setup for this app 
+#  
 # create package without tests 
 mvn clean package -Dmaven.test.skip=true
 
 # to start server 
 java -jar -Dspring.profiles.active=dev target/info-client-0.0.1-SNAPSHOT.war
+
+Links: 
+	http://localhost:8085/
+	
+	/listAllTechnology
+	/listAllInfo
+	/listAllProblem
+	
+	/addTechnology  --> to add 
+	/addInfo
+	/addProblem
+	

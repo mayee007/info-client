@@ -51,7 +51,8 @@ public class TechnologyController {
 			logger.info(tech.getTechnologyType() + " " + tech.getCategory());
 		}
 		model.put("techs", techs); 
-		return "addTechnology.jsp";
+		model.put("msg", "from addtech");
+		return "addTechnology";
 	}
 	
 	@GetMapping("/listAllTechnology")
@@ -87,7 +88,7 @@ public class TechnologyController {
 	}
 	
 	@DeleteMapping("/listAllTechnology/{id}")
-	void deleteTechnologyById(@PathVariable("id") String id) {
+	String deleteTechnologyById(Map<String, Object> model, @PathVariable("id") String id) {
 		
 		String uri = url+"/{id}"; 
 		logger.info("inside delete technology() , id = " + id); 
@@ -97,6 +98,15 @@ public class TechnologyController {
 	    logger.info("url = " + uri);
 		restTemplate.delete(uri, params); 
 		logger.info("after deletion of ID "+id);
+		
+		Technology[] techs = restTemplate.getForObject(url, Technology[].class); 
+		
+		logger.info(techs.toString());
+		for (Technology tech: techs) { 
+			logger.info(tech.getTechnologyType() + " " + tech.getCategory());
+		}
+		model.put("techs", techs); 
+		return "alltech";
 	}
 	
 	@PostMapping("/listAllTechnology")
@@ -144,5 +154,33 @@ public class TechnologyController {
         //Technology tech = (Technology) response.getBody();
         model.put("tech", response.getBody()); 
 		return "techAdded" ;
+	}
+	
+	@GetMapping("/addInfo")
+	String addInfo(Map<String, Object> model) {
+		logger.info("inside add info");
+		
+		Technology[] techs = restTemplate.getForObject(url, Technology[].class); 
+		
+		logger.info(techs.toString());
+		for (Technology tech: techs) { 
+			logger.info(tech.getTechnologyType() + " " + tech.getCategory());
+		}
+		model.put("techs", techs); 
+		return "addInfo";
+	}
+	
+	@GetMapping("/addProblem")
+	String addProblem(Map<String, Object> model) {
+		logger.info("inside add problem");
+		
+		Technology[] techs = restTemplate.getForObject(url, Technology[].class); 
+		
+		logger.info(techs.toString());
+		for (Technology tech: techs) { 
+			logger.info(tech.getTechnologyType() + " " + tech.getCategory());
+		}
+		model.put("techs", techs); 
+		return "addProblem";
 	}
 }

@@ -28,6 +28,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.databind.deser.BuilderBasedDeserializer;
 import com.mine.info.model.Info;
+import com.mine.info.model.Technology;
+import com.mine.info.service.TechnologyService;
 
 @Controller
 public class InfoController {
@@ -35,14 +37,17 @@ public class InfoController {
 	@Value ( "${info.list.url}" )
 	String url; 
 	
-	private Logger logger = LoggerFactory.getLogger(TechnologyController.class);
+	@Autowired
+	TechnologyService techService;
+	
+	private Logger logger = LoggerFactory.getLogger(InfoController.class);
 	
 	@Autowired
 	RestTemplate restTemplate; 
 	
 	@GetMapping("/listAllInfo")
 	String listAllInfo(Map<String, Object> model) {
-		logger.info("inside TechnologyController::listAllInfo()");
+		logger.info("inside InfoController::listAllInfo()");
 		logger.info("url = "+url); 
 		//RestTemplate restTemplate = new RestTemplate(); 
 		Info[] infos = restTemplate.getForObject(url, Info[].class); 
@@ -73,7 +78,7 @@ public class InfoController {
 	}
 	
 	@DeleteMapping("/listAllInfo/{id}")
-	void deleteInfoById(@PathVariable("id") String id) {
+	String deleteInfoById(Map<String, Object> model, @PathVariable("id") String id) {
 		
 		String uri = url+"/{id}"; 
 		logger.info("inside delete info() , id = " + id); 
@@ -83,43 +88,40 @@ public class InfoController {
 	    logger.info("url = " + uri);
 		restTemplate.delete(uri, params); 
 		logger.info("after deletion of ID "+id);
+		
+		logger.info("inside InfoController::listAllInfo()");
+		logger.info("url = "+url); 
+		
+		Info[] infos = restTemplate.getForObject(url, Info[].class); 
+		
+		logger.info(infos.toString());
+		for (Info info: infos) { 
+			logger.info(info.getSubject());
+		}
+		model.put("infos", infos); 
+		return "allInfo";
+		
 	}
 	
 	@PostMapping("/listAllInfo")
-	String  addInfo(Map<String, Object> model, @RequestParam("category") String category, 
-			@RequestParam("technologyType") String technologyType, 
+	String  addInfo(Map<String, Object> model, @RequestParam("techId") String techId, 
 			@RequestParam("subject") String subject, 
 			@RequestParam("description") String description) {
 		
-		logger.info("inside add info() , values = " + category + " , "+technologyType); 
-	    logger.info("url = " + url);
-	    
-	    //UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
-	    //builder.queryParam(category, category);
-	    //builder.queryParam(technologyType, technologyType); 
-	    
-	    //HttpHeaders headers = new HttpHeaders();
-	    //headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-	    //HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity =
-	            //new HttpEntity<>(params, headers);
-	    
-	    //Technology tech = new Technology(); 
-	    //tech.setCategory(category);
-	    //tech.setTechnologyType(technologyType);
-	    //logger.info("tech id =" + tech.getTechnologyId());
-	    //logger.info("going to call post for object");
-		//Technology newTech = restTemplate.postForObject(url, tech, Technology.class); 
-		//return newTech;
-		
+		logger.info("inside add info() , values = " + techId);
+		logger.info("subject" +subject);
+		logger.info("description " + description);
+
 		MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
         Map map = new HashMap<String, String>();
         map.put("Content-Type", "application/json");
 
         headers.setAll(map);
 
+        Technology tech = techService.getTechnologyById(Integer.parseInt(techId)); 
         Map req_payload = new HashMap();
-        req_payload.put("category", category);
-        req_payload.put("technologyType", technologyType);
+        //req_payload.put("category", tech.getCategory());
+        req_payload.put("technology", tech);
         req_payload.put("subject", subject); 
         req_payload.put("description", description); 
 
@@ -127,14 +129,13 @@ public class InfoController {
         
         ResponseEntity<?> response = restTemplate.postForEntity(url, request, String.class);
 
-        //Technology tech = (Technology) response.getBody();
         logger.info("info = "+ response.toString() + ".......");
         logger.info("status = " + response.getStatusCode());
         logger.info("message = " + response.getBody() + " --------");
         
         model.put("info", response.getBody()); 
-        
+        model.put("msg" , "some text");
         logger.info("going to call html page"); 
-		return "infoadded" ;
+		return "infoAdded" ;
 	}
 }

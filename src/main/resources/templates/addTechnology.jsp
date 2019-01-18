@@ -3,7 +3,7 @@
     pageEncoding="ISO-8859-1"%>
 <html>
 <head>
-    <title>Add technology</title>
+    <title>Add technology jsp, template </title>
 </head>
 <body>
  

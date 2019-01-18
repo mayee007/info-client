@@ -28,12 +28,16 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.databind.deser.BuilderBasedDeserializer;
 import com.mine.info.model.Problem;
+import com.mine.info.service.TechnologyService;
 
 @Controller
 public class ProblemController {
 	
 	@Value ( "${problem.list.url}" )
 	String url; 
+	
+	@Autowired
+	TechnologyService techService;
 	
 	private Logger logger = LoggerFactory.getLogger(TechnologyController.class);
 	
@@ -73,7 +77,7 @@ public class ProblemController {
 	}
 	
 	@DeleteMapping("/listAllProblem/{id}")
-	void deleteProblemById(@PathVariable("id") String id) {
+	String deleteProblemById(Map<String, Object> model, @PathVariable("id") String id) {
 		
 		String uri = url+"/{id}"; 
 		logger.info("inside delete Problem() , id = " + id); 
@@ -83,35 +87,27 @@ public class ProblemController {
 	    logger.info("url = " + uri);
 		restTemplate.delete(uri, params); 
 		logger.info("after deletion of ID "+id);
+		
+		Problem[] problems = restTemplate.getForObject(url, Problem[].class); 
+		
+		logger.info(problems.toString());
+		for (Problem problem: problems) { 
+			logger.info(problem.getProblem());
+		}
+		model.put("problems", problems); 
+		return "allproblem";
+		
 	}
 	
 	@PostMapping("/listAllProblem")
-	String  addInfo(Map<String, Object> model, @RequestParam("category") String category, 
-			@RequestParam("technologyType") String technologyType, 
+	String  addInfo(Map<String, Object> model, @RequestParam("techId") String techId,  
 			@RequestParam("problem") String problem, 
 			@RequestParam("reasonForProblem") String reasonForProblem,
 			@RequestParam("solution") String solution) {
 		
-		logger.info("inside add Problem() , values = " + category + " , "+technologyType); 
+		logger.info("inside add Problem()"); 
 	    logger.info("url = " + url);
 	    
-	    //UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
-	    //builder.queryParam(category, category);
-	    //builder.queryParam(technologyType, technologyType); 
-	    
-	    //HttpHeaders headers = new HttpHeaders();
-	    //headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-	    //HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity =
-	            //new HttpEntity<>(params, headers);
-	    
-	    //Technology tech = new Technology(); 
-	    //tech.setCategory(category);
-	    //tech.setTechnologyType(technologyType);
-	    //logger.info("tech id =" + tech.getTechnologyId());
-	    //logger.info("going to call post for object");
-		//Technology newTech = restTemplate.postForObject(url, tech, Technology.class); 
-		//return newTech;
-		
 		MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
         Map map = new HashMap<String, String>();
         map.put("Content-Type", "application/json");
@@ -119,8 +115,7 @@ public class ProblemController {
         headers.setAll(map);
 
         Map req_payload = new HashMap();
-        req_payload.put("category", category);
-        req_payload.put("technologyType", technologyType);
+        req_payload.put("technology", techService.getTechnologyById(Integer.parseInt(techId)));
         req_payload.put("problem", problem);
         req_payload.put("reasonForProblem", reasonForProblem);
         req_payload.put("solution", solution); 
