@@ -52,12 +52,12 @@ public class InfoController {
 		//RestTemplate restTemplate = new RestTemplate(); 
 		Info[] infos = restTemplate.getForObject(url, Info[].class); 
 		
-		logger.info(infos.toString());
+		/* logger.info(infos.toString());
 		for (Info info: infos) { 
 			logger.info(info.getSubject());
-		}
+		} */
 		model.put("infos", infos); 
-		return "allinfo";
+		return "displayAddInfos";
 	}
 
 	@GetMapping("/listAllInfo/{id}")
@@ -74,7 +74,7 @@ public class InfoController {
 		System.out.println(info.getSubject());
 		
 		model.put("info", info); 
-		return "info" ;
+		return "singleInfo" ;
 	}
 	
 	@DeleteMapping("/listAllInfo/{id}")
@@ -94,12 +94,12 @@ public class InfoController {
 		
 		Info[] infos = restTemplate.getForObject(url, Info[].class); 
 		
-		logger.info(infos.toString());
+		/* logger.info(infos.toString());
 		for (Info info: infos) { 
 			logger.info(info.getSubject());
-		}
+		} */
 		model.put("infos", infos); 
-		return "allInfo";
+		return "displayAddInfos";
 		
 	}
 	

@@ -46,10 +46,10 @@ public class TechnologyController {
 		
 		Technology[] techs = restTemplate.getForObject(url, Technology[].class); 
 		
-		logger.info(techs.toString());
+		/*logger.info(techs.toString());
 		for (Technology tech: techs) { 
 			logger.info(tech.getTechnologyType() + " " + tech.getCategory());
-		}
+		} */
 		model.put("techs", techs); 
 		model.put("msg", "from addtech");
 		return "addTechnology";
@@ -62,12 +62,12 @@ public class TechnologyController {
 		//RestTemplate restTemplate = new RestTemplate(); 
 		Technology[] techs = restTemplate.getForObject(url, Technology[].class); 
 		
-		logger.info(techs.toString());
+		/* logger.info(techs.toString());
 		for (Technology tech: techs) { 
 			logger.info(tech.getTechnologyType() + " " + tech.getCategory());
-		}
+		} */ 
 		model.put("techs", techs); 
-		return "alltech";
+		return "displayAddTechnologies";
 	}
 
 	@GetMapping("/listAllTechnology/{id}")
@@ -84,7 +84,7 @@ public class TechnologyController {
 		System.out.println(tech.getTechnologyType() + " " + tech.getCategory());
 		
 		model.put("tech", tech); 
-		return "tech" ;
+		return "singleTech" ;
 	}
 	
 	@DeleteMapping("/listAllTechnology/{id}")
@@ -101,12 +101,12 @@ public class TechnologyController {
 		
 		Technology[] techs = restTemplate.getForObject(url, Technology[].class); 
 		
-		logger.info(techs.toString());
+		/* logger.info(techs.toString());
 		for (Technology tech: techs) { 
 			logger.info(tech.getTechnologyType() + " " + tech.getCategory());
-		}
+		} */
 		model.put("techs", techs); 
-		return "alltech";
+		return "displayAddTechnologies";
 	}
 	
 	@PostMapping("/listAllTechnology")
@@ -162,10 +162,10 @@ public class TechnologyController {
 		
 		Technology[] techs = restTemplate.getForObject(url, Technology[].class); 
 		
-		logger.info(techs.toString());
+		/* logger.info(techs.toString());
 		for (Technology tech: techs) { 
 			logger.info(tech.getTechnologyType() + " " + tech.getCategory());
-		}
+		} */ 
 		model.put("techs", techs); 
 		return "addInfo";
 	}
@@ -176,10 +176,10 @@ public class TechnologyController {
 		
 		Technology[] techs = restTemplate.getForObject(url, Technology[].class); 
 		
-		logger.info(techs.toString());
+		/* logger.info(techs.toString());
 		for (Technology tech: techs) { 
 			logger.info(tech.getTechnologyType() + " " + tech.getCategory());
-		}
+		} */ 
 		model.put("techs", techs); 
 		return "addProblem";
 	}

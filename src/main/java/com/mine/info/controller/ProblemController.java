@@ -51,12 +51,12 @@ public class ProblemController {
 		//RestTemplate restTemplate = new RestTemplate(); 
 		Problem[] problems = restTemplate.getForObject(url, Problem[].class); 
 		
-		logger.info(problems.toString());
-		for (Problem problem: problems) { 
-			logger.info(problem.getProblem());
-		}
+		//logger.info(problems.toString());
+		//for (Problem problem: problems) { 
+			//logger.info(problem.getProblem());
+		//}
 		model.put("problems", problems); 
-		return "allproblem";
+		return "displayAddProblems";
 	}
 
 	@GetMapping("/listAllProblem/{id}")
@@ -73,7 +73,7 @@ public class ProblemController {
 		System.out.println(problem.getSolution());
 		
 		model.put("problem", problem); 
-		return "problem" ;
+		return "singleProblem" ;
 	}
 	
 	@DeleteMapping("/listAllProblem/{id}")
@@ -90,12 +90,12 @@ public class ProblemController {
 		
 		Problem[] problems = restTemplate.getForObject(url, Problem[].class); 
 		
-		logger.info(problems.toString());
+		/*logger.info(problems.toString());
 		for (Problem problem: problems) { 
 			logger.info(problem.getProblem());
-		}
+		} */
 		model.put("problems", problems); 
-		return "allproblem";
+		return "displayAddProblems";
 		
 	}
 	
@@ -130,6 +130,6 @@ public class ProblemController {
         logger.info("message = " + response.getBody() + " --------");
         //Technology tech = (Technology) response.getBody();
         model.put("problem", response.getBody()); 
-		return "problemadded" ;
+		return "problemAdded" ;
 	}
 }
