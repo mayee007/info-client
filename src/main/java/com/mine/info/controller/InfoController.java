@@ -1,5 +1,6 @@
 package com.mine.info.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -124,7 +125,9 @@ public class InfoController {
         req_payload.put("technology", tech);
         req_payload.put("subject", subject); 
         req_payload.put("description", description); 
-
+        req_payload.put("submitDate", new Date()); 
+        req_payload.put("modifiedDate", new Date()); 
+        
         HttpEntity<?> request = new HttpEntity<>(req_payload, headers);
         
         ResponseEntity<?> response = restTemplate.postForEntity(url, request, String.class);

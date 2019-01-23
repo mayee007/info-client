@@ -1,5 +1,6 @@
 package com.mine.info.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -119,6 +120,8 @@ public class ProblemController {
         req_payload.put("problem", problem);
         req_payload.put("reasonForProblem", reasonForProblem);
         req_payload.put("solution", solution); 
+        req_payload.put("submitDate", new Date()); 
+        req_payload.put("modifiedDate", new Date()); 
 
         HttpEntity<?> request = new HttpEntity<>(req_payload, headers);
         
