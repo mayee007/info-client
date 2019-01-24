@@ -84,7 +84,7 @@ public class TechnologyController {
 		System.out.println(tech.getTechnologyType() + " " + tech.getCategory());
 		
 		model.put("tech", tech); 
-		return "singleTech" ;
+		return "singleTechnology" ;
 	}
 	
 	@DeleteMapping("/listAllTechnology/{id}")
