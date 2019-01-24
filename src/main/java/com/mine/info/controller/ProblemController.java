@@ -57,7 +57,7 @@ public class ProblemController {
 			//logger.info(problem.getProblem());
 		//}
 		model.put("problems", problems); 
-		return "displayAddProblems";
+		return "displayAllProblems";
 	}
 
 	@GetMapping("/listAllProblem/{id}")
@@ -96,7 +96,7 @@ public class ProblemController {
 			logger.info(problem.getProblem());
 		} */
 		model.put("problems", problems); 
-		return "displayAddProblems";
+		return "displayAllProblems";
 		
 	}
 	

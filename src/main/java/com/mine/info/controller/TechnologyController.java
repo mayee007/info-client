@@ -67,7 +67,7 @@ public class TechnologyController {
 			logger.info(tech.getTechnologyType() + " " + tech.getCategory());
 		} */ 
 		model.put("techs", techs); 
-		return "displayAddTechnologies";
+		return "displayAllTechnologies";
 	}
 
 	@GetMapping("/listAllTechnology/{id}")
@@ -106,7 +106,7 @@ public class TechnologyController {
 			logger.info(tech.getTechnologyType() + " " + tech.getCategory());
 		} */
 		model.put("techs", techs); 
-		return "displayAddTechnologies";
+		return "displayAllTechnologies";
 	}
 	
 	@PostMapping("/listAllTechnology")

@@ -58,7 +58,7 @@ public class InfoController {
 			logger.info(info.getSubject());
 		} */
 		model.put("infos", infos); 
-		return "displayAddInfos";
+		return "displayAllInfos";
 	}
 
 	@GetMapping("/listAllInfo/{id}")
@@ -100,7 +100,7 @@ public class InfoController {
 			logger.info(info.getSubject());
 		} */
 		model.put("infos", infos); 
-		return "displayAddInfos";
+		return "displayAllInfos";
 		
 	}
 	
