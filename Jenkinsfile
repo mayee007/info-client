@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-               sh 'mvn clean package'
+               sh 'mvn clean package -e checkstyle:checkstyle -Dspring.profiles.active=dev'
             }
         }
         stage('Analysis') { 
