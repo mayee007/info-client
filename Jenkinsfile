@@ -27,6 +27,25 @@ pipeline {
                sh 'mvn clean package'
             }
         }
+        stage('Analysis') { 
+            parallel { 
+                stage('Code Coverage') {
+                    steps {
+                       checkstyle canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '**/checkstyle-result.xml', unHealthy: ''
+                    }
+                }
+                stage('Test Coverage') {
+                    steps {
+                        jacoco maximumBranchCoverage: '90', maximumClassCoverage: '80', maximumComplexityCoverage: '70', maximumInstructionCoverage: '50', maximumLineCoverage: '65', maximumMethodCoverage: '70'
+                        
+                        //send surefire reports 
+                        junit 'target/surefire-reports/*.xml'
+                        
+                        sh 'printenv'
+                    }
+                }
+            }
+        }
         stage('Upload') {
             steps {
                 sh "cp target/*.war target/${params.artifactName}"
