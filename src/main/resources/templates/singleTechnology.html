@@ -9,7 +9,7 @@ table, th, td {
 </style>
 </head>
 <body>
-    <h2> Details for Technology ID: "${tech.technologyId}"/> </h2> 
+    <h2> <p th:inline="text">Details for Technology ID [[${tech.technologyId}]] </p> </h2>
 	<table border=1>
 	 
       <tr><td>Technology ID</td> <td th:text="${tech.technologyId}">1</td> </tr>

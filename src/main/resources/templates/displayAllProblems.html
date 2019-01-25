@@ -11,22 +11,18 @@
 		}
 	</style>
 
+    <script src="js/sortable.js"></script>
 </head>
-<script>
-    function rowClicked(value) {
-        location.href = "/listAllProblem/" + value;
-    }
-</script>
 
 <body>
 <h2>Information website</h2>
 
-    <table border=1>
+    <table border=1 class="sortable">
 	  <tr>
 	  <th>Problem ID</th>
 	  <th>Problem</th>
-	  <th>Reason For Problem</th>
-	  <th>Solution</th>
+	  <!-- <th>Reason For Problem</th>
+	   <th>Solution</th> -->
 	  <th>Submit Date</th>
 	  <th>Modified Date</th>
 	  <th>Technology Category</th>
@@ -37,8 +33,8 @@
 	  	onmouseout="this.bgColor='';this.style.cursor='default'">
         <td th:text="${problem.id}">1</td>
         <td th:text="${problem.problem}">1</td>
-        <td th:text="${problem.reasonForProblem}">1</td>
-        <td th:text="${problem.solution}">1</td>
+        <!--  <td th:text="${problem.reasonForProblem}">1</td>
+        <td th:text="${problem.solution}">1</td> -->
         <td th:text="${problem.submitDate}">1</td>
         <td th:text="${problem.modifiedDate}">1</td>
         <td th:text="${problem.technology.category}">1</td>
