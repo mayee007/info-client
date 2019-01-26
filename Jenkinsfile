@@ -7,7 +7,7 @@ pipeline {
         string(name: 'mavenGroupId', defaultValue: 'com.mine', description: '')
         string(name: 'mavenArtifactId', defaultValue: 'info-client', description: '')
         string(name: 'artifactName', defaultValue: 'info-client.war', description: '')
-        string(name: 'version', defaultValue: '1.0', description: '')
+        string(name: 'version', defaultValue: '1.1.0', description: '')
         string(name: 'packaging', defaultValue: 'war', description: '')
         string(name: 'destination', defaultValue: '/root/info-scripts/info-client', description: '')
         string(name: 'artifactRepositoryUrl', defaultValue: 'http://localhost:8081/artifactory/snapshots', description: '')
