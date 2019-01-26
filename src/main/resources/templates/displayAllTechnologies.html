@@ -28,14 +28,14 @@
 	  <tr th:each="tech : ${techs}" style="cursor: pointer"
      	th:onclick="'javascript:rowClicked(\'' + ${tech.technologyId} + '\');'"
      	onmouseover="this.bgColor ='#C0C0C0';this.style.cursor='pointer'" 
-	  	onmouseout="this.bgColor='';this.style.cursor='default'"
-	  	>
+	  	onmouseout="this.bgColor='';this.style.cursor='default'">
+	  	
         <td th:text="${tech.technologyId}">1</td>
-        <td th:text="${tech.category}">1</td>
         <td th:text="${tech.technologyType}">1</td>
+        <td th:text="${tech.category}">1</td>
+
       </tr>
-      
-	</table>
+    </table>
     
 </body>
 </html>
