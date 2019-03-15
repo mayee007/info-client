@@ -57,5 +57,11 @@ pipeline {
 		sh "docker push ${params.dockerImageTag}"
             }
         }
+        stage('KubeService') {
+            steps {
+		sh "ssh -i ~/.ssh/master_private_key master info/client_delete.sh"
+		sh "ssh -i ~/.ssh/master_private_key master 'kubectl create -f info/info-client-service.yml'"
+            }
+        }
     }
 }
