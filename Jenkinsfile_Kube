@@ -9,7 +9,7 @@ pipeline {
         string(name: 'artifactName', defaultValue: 'info-client.war', description: '')
         string(name: 'version', defaultValue: '1.1.0', description: '')
         string(name: 'packaging', defaultValue: 'war', description: '')
-        string(name: 'destination', defaultValue: '/root/info-scripts/info-client', description: '')
+        string(name: 'destination', defaultValue: '/home/vagrant/workspace/docker_builds/info-client', description: '')
         string(name: 'artifactRepositoryUrl', defaultValue: 'http://localhost:8081/artifactory/snapshots', description: '')
         
     }
@@ -46,15 +46,21 @@ pipeline {
                 }
             }
         }
-        stage('Upload') {
+        stage('Convert') {
             steps {
                 sh "cp target/*.war target/${params.artifactName}"
+		sh "mkdir target/extract"
+		sh "cd target/extract" 
+		sh "jar xvf ../${params.artifactName}"
+		sh "cp WEB-INF/classes/application-prod.properties WEB-INF/classes/application.properties"
+		sh "tar cvf ../${params.artifactName} . "
             }
         }
-        //stage('Deploy') {
-         //   steps {
-          //      sh "/root/info-scripts/info-client.sh ${params.destination} ${params.artifactRepositoryUrl} ${params.mavenGroupId} ${params.mavenArtifactId} ${params.version} ${params.packaging} ${params.artifactName} ${params.artifactPath}"
-           // }
-        //}
+        stage('Deploy') {
+            steps {
+		sh "pwd"
+                sh "cp ../${params.artifactName} ${params.destination}"
+            }
+        }
     }
 }
