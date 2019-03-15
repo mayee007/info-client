@@ -61,6 +61,7 @@ pipeline {
             steps {
 		sh "ssh -i ~/.ssh/master_private_key master info/client_delete.sh"
 		sh "ssh -i ~/.ssh/master_private_key master 'kubectl create -f info/info-client-service.yml'"
+		sh "ssh -i ~/.ssh/master_private_key master 'kubectl get svc info-client-service'"
             }
         }
     }
