@@ -48,18 +48,13 @@ pipeline {
         }
         stage('Convert') {
             steps {
-                sh "cp target/*.war target/${params.artifactName}"
-		sh "mkdir target/extract"
-		sh "cd target/extract" 
-		sh "jar xvf ../${params.artifactName}"
-		sh "cp WEB-INF/classes/application-prod.properties WEB-INF/classes/application.properties"
-		sh "tar cvf ../${params.artifactName} . "
+                sh "./createProductionWar.sh ${params.artifactName}"
             }
         }
         stage('Deploy') {
             steps {
 		sh "pwd"
-                sh "cp ../${params.artifactName} ${params.destination}"
+                sh "cp target/${params.artifactName} ${params.destination}"
             }
         }
     }
