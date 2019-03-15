@@ -1,6 +1,6 @@
 pipeline {
     agent { 
-		label 'dockerserver'
+		label 'kubeworker1'
 	}
 
     parameters { 
