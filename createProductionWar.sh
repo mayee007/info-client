@@ -8,4 +8,4 @@ cd extract
 jar xvf ../*.war
 rm -rf ../*.war 
 cp WEB-INF/classes/application-prod.properties WEB-INF/classes/application.properties
-jar cvf ../$1 . 
+jar cvf ../../$1 . 
