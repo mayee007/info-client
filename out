@@ -1,0 +1,7 @@
+cp target/info-client-0.0.1-SNAPSHOT.war target/info-client.war
+[Pipeline] sh
+[Info-client] Running shell script
++ mvn -X deploy:deploy-file -DgroupId=com.mine -DartifactId=info-client -Dversion=1.1.0-SNAPSHOT -Dpackaging=war -Dfile=target/info-client.war -DrepositoryId=snapshots -Durl=http://localhost:8081/artifactory/snapshots
+
+/root/info-scripts/info-client.sh /root/info-scripts/info-client http://localhost:8081/artifactory/snapshots com.mine info-client 1.1.0 war info-client.war http://localhost:8081/artifactory/snapshots/com/mine/info-client/1.1.0-SNAPSHOT
+
